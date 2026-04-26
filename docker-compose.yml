@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: sorevnovania-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - sqlite_data:/app/data
+    environment:
+      - DATABASE_URL=sqlite:///./data/sorevnovania.db
+    restart: unless-stopped
+    networks:
+      - sorevnovania-network
+
+  frontend:
+    build: ./frontend
+    container_name: sorevnovania-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - sorevnovania-network
+
+volumes:
+  sqlite_data:
+    driver: local
+
+networks:
+  sorevnovania-network:
+    driver: bridge
