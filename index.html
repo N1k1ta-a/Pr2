@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Соревнования 2026</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏆 Система управления соревнованиями 2026</h1>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('participants')">Участники</button>
+            <button class="tab-btn" onclick="showTab('competitions')">Соревнования</button>
+        </div>
+
+        <!-- Вкладка участников -->
+        <div id="participants-tab" class="tab-content active">
+            <div class="add-form">
+                <h2>➕ Добавить участника</h2>
+                <form id="add-participant-form">
+                    <input type="text" id="participant-name" placeholder="Имя участника" required>
+                    <input type="text" id="participant-team" placeholder="Команда" required>
+                    <input type="number" id="participant-score" placeholder="Счёт" step="0.1" value="0">
+                    <button type="submit">Добавить</button>
+                </form>
+            </div>
+
+            <div class="stats">
+                <h3>📊 Статистика</h3>
+                <p>Всего участников: <span id="total-participants">0</span></p>
+                <p>Средний счёт: <span id="average-score">0</span></p>
+            </div>
+
+            <div id="participants-list" class="participants-grid"></div>
+        </div>
+
+        <!-- Вкладка соревнований -->
+        <div id="competitions-tab" class="tab-content">
+            <div class="add-form">
+                <h2>➕ Создать соревнование</h2>
+                <form id="add-competition-form">
+                    <input type="text" id="competition-title" placeholder="Название" required>
+                    <input type="datetime-local" id="competition-date" required>
+                    <select id="competition-status">
+                        <option value="active">Активное</option>
+                        <option value="completed">Завершённое</option>
+                        <option value="cancelled">Отменённое</option>
+                    </select>
+                    <button type="submit">Создать</button>
+                </form>
+            </div>
+
+            <div id="competitions-list" class="competitions-list"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
